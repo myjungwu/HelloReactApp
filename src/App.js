@@ -8,7 +8,9 @@ class App extends Component {
       <div className='App'>
         <MyComponents name="ReactJS" age={100} />
         <hr/>
-        <MyComponentsFunc name="함수형컴포넌트" />
+        <MyComponentsFunc name="함수형컴포넌트">
+          <p>함수형 컴포넌트의 하위 엘리먼트</p>
+        </MyComponentsFunc>
       </div>
     );
   }

@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 class MyComponents extends Component {
+    //생성자
+    constructor(props) {
+        super(props);
+        //state 객체
+        this.state = {
+            //상태변수
+            myValue: 0
+        };
+    };
     // static defaultProps = {
     //         name: "리액트JS"
     //     }
     render() {
         const { name, age } = this.props;
-
+        const { myValue } = this.state;
+        
         return (
             <div>
                 <h3>Hello {name} / {age}</h3>
-
+                <p>
+                    상태변수 myValue = {myValue}
+                </p>
             </div>
         );
     }
