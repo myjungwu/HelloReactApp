@@ -4,11 +4,13 @@ class MyComponents extends Component {
     //생성자
     // constructor(props) {
     //     super(props);
-    //     //state 객체
-    //     this.state = {
-    //         //상태변수
-    //         myValue: 0
-    //     };
+        //state 객체
+        // this.state = {
+        //     //상태변수
+        //     myValue: 0
+        // };
+        //event handler함수가 this를 사용할 수 있도록 this객체를 binding해주기
+    //    this.handleMinus = this.handleMinus.bind(this);
     // };
     // static defaultProps = {
     //         name: "리액트JS"
@@ -19,13 +21,16 @@ class MyComponents extends Component {
         myValue: 0
     }
     //Event Handler함수선언
+    // handleMinus() {    
     handleMinus = () => {
-        this.setState({myValue: this.state.myValue - 1});
+        const { myValue } = this.state;
+        this.setState({myValue: myValue - 1});
     };
 
     render() {
         const { name, age } = this.props;
         const { myValue } = this.state;
+        const { handleMinus } = this;
 
         return (
             <div>
@@ -34,7 +39,7 @@ class MyComponents extends Component {
                     상태변수 myValue = {myValue}
                 </p>
                 <button onClick={() => this.setState({myValue: myValue+1})}>증가</button>
-                <button onClick={this.handleMinus}>감소</button>
+                <button onClick={handleMinus}>감소</button>
             </div>
         );
     }
