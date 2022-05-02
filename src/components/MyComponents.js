@@ -42,7 +42,8 @@ class MyComponents extends Component {
         //enter key
         if(e.keyCode === 13){
             this.setState({
-                messages: messages.concat(message),
+                // messages: messages.concat(message),
+                messages: [...messages, message],
                 message: '',
                 isValid: true,
             });
@@ -50,12 +51,18 @@ class MyComponents extends Component {
         }
 
     };
+    handleDoubleClick = (index) => {
+        this.setState({
+            messages: this.state.messages.filter((val,idx) => (idx !== index))
+        });
+    };
 
     render() {
         const { name, age } = this.props;
         const { myValue, message, username, isValid, messages } = this.state;
-        const { handleMinus, handleChange, handleEnter } = this;
-        const message_list = messages.map((msg,idx) => (<li key={idx}>{msg}</li>));
+        const { handleMinus, handleChange, handleEnter, handleDoubleClick } = this;
+        const message_list = messages.map((msg,idx) => 
+            (<li key={idx} onDoubleClick={() => handleDoubleClick(idx)}>{msg}</li>));
 
         return (
             <div>
