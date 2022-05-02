@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 class MyComponents extends Component {
     //생성자
     // constructor(props) {
@@ -52,6 +53,8 @@ class MyComponents extends Component {
                     상태변수 message = {message}
                 </p>
                 <input type="text" name="message" value={message} onChange={handleChange} />
+                <button>추가</button>
+                <button onClick={() => this.setState({message: ''})}>초기화</button>
                 <p>
                     상태변수 username = {username}
                 </p>
