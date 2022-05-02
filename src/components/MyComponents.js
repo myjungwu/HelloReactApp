@@ -22,6 +22,7 @@ class MyComponents extends Component {
         //상태변수
         myValue: 0,
         message: '',
+        messages: ['Angular','React','Vue','Ember'],
         username: '',
         isValid: false
     }
@@ -37,9 +38,11 @@ class MyComponents extends Component {
         });
     };
     handleEnter = (e) => {
+        const {message, messages} = this.state;
         //enter key
         if(e.keyCode === 13){
             this.setState({
+                messages: messages.concat(message),
                 message: '',
                 isValid: true,
             });
@@ -50,8 +53,9 @@ class MyComponents extends Component {
 
     render() {
         const { name, age } = this.props;
-        const { myValue, message, username, isValid } = this.state;
+        const { myValue, message, username, isValid, messages } = this.state;
         const { handleMinus, handleChange, handleEnter } = this;
+        const message_list = messages.map((msg,idx) => (<li key={idx}>{msg}</li>));
 
         return (
             <div>
@@ -65,8 +69,10 @@ class MyComponents extends Component {
                     상태변수 message = {message}
                 </p>
                 <input type="text" name="message" value={message} onChange={handleChange} onKeyDown={handleEnter} />
-                <button>추가</button>
                 <button onClick={() => this.setState({message: ''})}>초기화</button>
+                <ul>
+                    {message_list}
+                </ul>
                 <p>
                     상태변수 username = {username}
                 </p>
