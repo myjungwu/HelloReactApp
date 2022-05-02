@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import './MyComponents.css';
 class MyComponents extends Component {
     //생성자
     // constructor(props) {
@@ -22,7 +22,8 @@ class MyComponents extends Component {
         //상태변수
         myValue: 0,
         message: '',
-        username: ''
+        username: '',
+        isValid: false
     }
     //Event Handler함수선언
     // handleMinus() {    
@@ -34,12 +35,22 @@ class MyComponents extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-    }
+    };
+    handleEnter = (e) => {
+        //enter key
+        if(e.keyCode === 13){
+            this.setState({
+                message: '',
+                isValid: true,
+            });
+        }
+
+    };
 
     render() {
         const { name, age } = this.props;
-        const { myValue, message, username } = this.state;
-        const { handleMinus, handleChange } = this;
+        const { myValue, message, username, isValid } = this.state;
+        const { handleMinus, handleChange, handleEnter } = this;
 
         return (
             <div>
@@ -52,13 +63,14 @@ class MyComponents extends Component {
                 <p>
                     상태변수 message = {message}
                 </p>
-                <input type="text" name="message" value={message} onChange={handleChange} />
+                <input type="text" name="message" value={message} onChange={handleChange} onKeyDown={handleEnter} />
                 <button>추가</button>
                 <button onClick={() => this.setState({message: ''})}>초기화</button>
                 <p>
                     상태변수 username = {username}
                 </p>
-                <input type="text" name="username" value={username} onChange={handleChange} />
+                <input type="text" name="username" value={username} onChange={handleChange} 
+                    className={isValid ? 'success':'failure'} />
 
             </div>
         );
