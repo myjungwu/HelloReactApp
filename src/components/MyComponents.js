@@ -18,7 +18,9 @@ class MyComponents extends Component {
 
     //state 객체
     state = {
-        myValue: 0
+        //상태변수
+        myValue: 0,
+        message: ''
     }
     //Event Handler함수선언
     // handleMinus() {    
@@ -26,11 +28,16 @@ class MyComponents extends Component {
         const { myValue } = this.state;
         this.setState({myValue: myValue - 1});
     };
+    handleChange = (e) => {
+        this.setState({
+            message: e.target.value
+        });
+    }
 
     render() {
         const { name, age } = this.props;
-        const { myValue } = this.state;
-        const { handleMinus } = this;
+        const { myValue, message } = this.state;
+        const { handleMinus, handleChange } = this;
 
         return (
             <div>
@@ -40,6 +47,10 @@ class MyComponents extends Component {
                 </p>
                 <button onClick={() => this.setState({myValue: myValue+1})}>증가</button>
                 <button onClick={handleMinus}>감소</button>
+                <p>
+                    상태변수 message = {message}
+                </p>
+                <input type="text" value={message} onChange={handleChange} />
             </div>
         );
     }
