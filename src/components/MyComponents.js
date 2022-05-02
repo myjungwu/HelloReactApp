@@ -43,6 +43,7 @@ class MyComponents extends Component {
                 message: '',
                 isValid: true,
             });
+            this.myUsername.focus();
         }
 
     };
@@ -70,7 +71,7 @@ class MyComponents extends Component {
                     상태변수 username = {username}
                 </p>
                 <input type="text" name="username" value={username} onChange={handleChange} 
-                    className={isValid ? 'success':'failure'} />
+                    className={isValid ? 'success':'failure'} ref={(ref) => this.myUsername=ref} />
 
             </div>
         );
